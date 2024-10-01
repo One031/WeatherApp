@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8"> <!-- Character encoding for the HTML document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design settings -->
+    <title>Weather App</title> <!-- Title of the webpage -->
+    <link rel="stylesheet" href="main.css"> <!-- Link to the main CSS file for styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Link to Font Awesome for icons -->
 </head>
 <body>
-    <div class="container">
-        <form id="myForm" method="post">
-            <input type="text" id="cityInput" placeholder="Enter city.." name="name" />
-            <button type="submit" id="search" formaction="/search-name">
-                <i class="fa-solid fa-magnifying-glass"></i>
+    <div class="container"> <!-- Main container for the weather app -->
+        <form id="myForm" method="post"> <!-- Form to submit city name -->
+            <input type="text" id="cityInput" placeholder="Enter city.." name="name" /> <!-- Text input for city name -->
+            <button type="submit" id="search" formaction="/search-name"> <!-- Submit button with search icon -->
+                <i class="fa-solid fa-magnifying-glass"></i> <!-- Search icon from Font Awesome -->
             </button>
-        <div class="response">
-            <div class="weather-temp">
-                <% if(content.icon1 && content.temp && content.city && content.humid && content.wind1) {%>
-                <img class="icon" src="http://openweathermap.org/img/wn/<%= content.icon1 %>@2x.png" alt="Weather Icon">
-                <p class="temp"><%= content.temp %>°c</p>
-                <p class="city"><%= content.city %></p>
-            </div>
+        </form>
 
-            <div class="weather-humidity-wind">
-                <p class="humid">Humidity: <%= content.humid %>%</p>
-                <p class="wind">Wind Speed: <%= content.wind1 %> km/h</p>
-            </div>
-            <% }else{%>
-                <%= content %>
+        <div class="response"> <!-- Container for displaying the weather response -->
+            <div class="weather-temp"> <!-- Section for temperature and city name -->
+                <% if(content.icon1 && content.temp && content.city && content.humid && content.wind1) {%> <!-- Check if weather data is available -->
+                    <img class="icon" src="http://openweathermap.org/img/wn/<%= content.icon1 %>@2x.png" alt="Weather Icon"> <!-- Display weather icon -->
+                    <p class="temp"><%= content.temp %>°c</p> <!-- Display temperature -->
+                    <p class="city"><%= content.city %></p> <!-- Display city name -->
+                </div>
+
+                <div class="weather-humidity-wind"> <!-- Section for humidity and wind speed -->
+                    <p class="humid">Humidity: <%= content.humid %>%</p> <!-- Display humidity -->
+                    <p class="wind">Wind Speed: <%= content.wind1 %> km/h</p> <!-- Display wind speed -->
+                </div>
+                <% }else{%> <!-- If no weather data is available -->
+                    <%= content %> <!-- Display the error or message from the server -->
                 <% } %>
+            </div>
         </div>
     </div>
 </body>
